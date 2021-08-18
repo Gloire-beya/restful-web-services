@@ -20,8 +20,8 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        User jane = new User("Jane", LocalDate.of(2000, Month.AUGUST, 1));
-        User fatu = new User("Fatu", LocalDate.of(1990, Month.FEBRUARY, 4));
+        User jane = new User("Jane", "Kabwe","janekabwe@gmail.com",LocalDate.of(2000, Month.AUGUST, 1));
+        User fatu = new User("Fatu", "Mwinga","fatumamwinga@gmail.com",LocalDate.of(1990, Month.FEBRUARY, 4));
         userRepository.saveAll(List.of(jane, fatu));
 
         Post post1 = new Post("Jane's first post", jane);

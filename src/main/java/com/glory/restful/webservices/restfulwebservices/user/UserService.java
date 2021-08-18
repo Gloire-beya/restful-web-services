@@ -25,7 +25,7 @@ public class UserService {
         if (optionalUser.isPresent()) {
             return optionalUser.get();
         }
-        throw new UserNotFoundException("id: " + id);
+        throw new UserNotFoundException("User with ID " + id +" not found");
     }
 
     public User saveUser(User user){
@@ -36,12 +36,12 @@ public class UserService {
         if (optionalUser.isPresent()) {
             userRepository.deleteById(id);
         }else {
-            throw new UserNotFoundException("ID: "+ id);
+            throw new UserNotFoundException("User with ID " + id +" not found");
         }
     }
     public Post savePost(Integer id, Post post){
         Optional<User> optionalUser = userRepository.findById(id);
-        if (!optionalUser.isPresent()) throw new UserNotFoundException("ID :" + id);
+        if (!optionalUser.isPresent()) throw new UserNotFoundException("User with ID " + id +" not found");
         User user = optionalUser.get();
         post.setUser(user);
         return postRepository.save(post);

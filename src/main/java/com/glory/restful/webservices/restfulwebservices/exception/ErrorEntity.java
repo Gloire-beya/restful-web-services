@@ -2,15 +2,15 @@ package com.glory.restful.webservices.restfulwebservices.exception;
 
 import java.time.LocalDateTime;
 
-public class ExceptionResponse {
+public class ErrorEntity {
     private final LocalDateTime dateTime;
     private final String message;
-    private final String details;
+    private final String url;
 
-    public ExceptionResponse(LocalDateTime dateTime, String message, String details) {
+    public ErrorEntity(LocalDateTime dateTime, String message, String url) {
         this.dateTime = dateTime;
         this.message = message;
-        this.details = details;
+        this.url = url;
     }
 
     public LocalDateTime getDateTime() {
@@ -21,7 +21,7 @@ public class ExceptionResponse {
         return message;
     }
 
-    public String getDetails() {
-        return details;
+    public String getUrl() {
+        return url;
     }
 }

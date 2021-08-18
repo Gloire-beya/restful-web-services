@@ -17,18 +17,18 @@ public class CustomResponseEntityExceptionController extends ResponseEntityExcep
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
-                                                                    ex.getMessage(),
-                                                                    request.getDescription(false));
-        return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        ErrorEntity errorEntity = new ErrorEntity(LocalDateTime.now(),
+                                                  ex.getMessage(),
+                                                  request.getDescription(false));
+        return new ResponseEntity(errorEntity, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
     public final ResponseEntity<Object> userNotFoundException(UserNotFoundException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
-                                                                    ex.getMessage(),
-                                                                    request.getDescription(false));
-        return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+        ErrorEntity errorEntity = new ErrorEntity(LocalDateTime.now(),
+                                                  ex.getMessage(),
+                                                  request.getDescription(false));
+        return new ResponseEntity(errorEntity, HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -37,9 +37,9 @@ public class CustomResponseEntityExceptionController extends ResponseEntityExcep
                                                                   HttpStatus status,
                                                                   WebRequest request) {
 
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),
-                                                                    "Validation failed",
-                                                                    ex.getBindingResult().toString());
-        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+        ErrorEntity errorEntity = new ErrorEntity(LocalDateTime.now(),
+                                                  "Validation failed",
+                                                  ex.getBindingResult().toString());
+        return new ResponseEntity(errorEntity, HttpStatus.BAD_REQUEST);
     }
 }
